@@ -71,4 +71,14 @@ public class Filial {
         return  "\n---- Filial " + nome + " ----" + "\nCNPJ: " + cnpj + "\nEmail: " +
         	    email + "\nTelefone: " + telefone + "\nEndereco: " + endereco;
     }
-}
+    
+    public boolean verificacaoCadastro(Filial filial)	{
+
+		if(filial.getNome() == null ||  filial.getEmail() == null || filial.getEndereco() == null) {
+			return false;
+		}
+		else {
+			return true;
+		}
+    }}
+    

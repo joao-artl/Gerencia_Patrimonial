@@ -66,6 +66,7 @@ public class Empresa {
 		return filiais;
 	}
 	
+	/*
 	public ArrayList<ItemDePatrimonio> listarTodosPatrimonios() {
 		ArrayList<ItemDePatrimonio> todosPatrimonios = new ArrayList<ItemDePatrimonio>();
 		for(Filial i: filiais) {
@@ -73,9 +74,9 @@ public class Empresa {
 		}
 		return todosPatrimonios;
 	}
+	*/
 	
-	/*
-	 * lista apenas os nomes dos patrimonios
+	//lista os patrimonios por nome
 	public ArrayList<String> listarTodosPatrimonios() {
 		ArrayList<String> todosPatrimonios = new ArrayList<String>();
 		for(Filial i: filiais) {
@@ -85,7 +86,7 @@ public class Empresa {
 		}
 		return todosPatrimonios;
 	}
-	*/
+	
 	
 	public ItemDePatrimonio buscarPatrimonio(String busca) {
 		ItemDePatrimonio encontrado;

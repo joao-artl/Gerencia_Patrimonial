@@ -14,13 +14,12 @@ public class TelaPrincipal implements ActionListener {
 	
 	public TelaPrincipal() {
 		janelaInicial.setLayout(null);
-		janelaInicial.setSize(500, 300);
-		janelaInicial.setLocationRelativeTo(null);
+		janelaInicial.setBounds(515, 190, 500, 300);
 		
-		filial.setBounds(30, 210, 105, 30);
-		empresa.setBounds(310, 210, 140, 30);
-		busca.setBounds(65, 40, 350, 35);
-		textoBusca.setBounds(65, 15, 150, 20);
+		filial.setBounds(20, 220, 105, 30);
+		empresa.setBounds(320, 220, 137, 30);
+		busca.setBounds(65, 40, 350, 30);
+		textoBusca.setBounds(65, 20, 150, 20);
 		textoBusca.setFont(new Font("Arial", Font.PLAIN, 14));
 		
 		filial.setBackground(cinzinha);
@@ -40,7 +39,7 @@ public class TelaPrincipal implements ActionListener {
 		
 		filial.addActionListener(inicio);
 		empresa.addActionListener(inicio);
-		//busca.addActionListener(inicio);
+		busca.addActionListener(inicio);
 	}
 	
 	public void actionPerformed(ActionEvent event) {
@@ -59,11 +58,3 @@ public class TelaPrincipal implements ActionListener {
 		*/
 	}
 }
-
-
-
-
-
-
-
-
