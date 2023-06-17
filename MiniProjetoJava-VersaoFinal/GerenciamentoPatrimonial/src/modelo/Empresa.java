@@ -10,6 +10,9 @@ public class Empresa {
 	private String endereco;
 	private ArrayList<Filial> filiais = new ArrayList<Filial>();
 	
+	public Empresa() {
+	}
+	
 	public Empresa(String nome, long cnpj, String email,
 				   long telefone, String endereco) {
 		this.nome = nome;
@@ -66,15 +69,16 @@ public class Empresa {
 		return filiais;
 	}
 	
-	/*
-	public ArrayList<ItemDePatrimonio> listarTodosPatrimonios() {
-		ArrayList<ItemDePatrimonio> todosPatrimonios = new ArrayList<ItemDePatrimonio>();
-		for(Filial i: filiais) {
-			todosPatrimonios.addAll(i.getPatrimonios());
+	public String[] getNomesFiliais() {
+		int t = getFiliais().size();
+		String s[] = new String[t];
+		int i = 0;
+		for(Filial j: filiais) { 
+			s[i] = j.getNome();
+			i++;
 		}
-		return todosPatrimonios;
+		return s;
 	}
-	*/
 	
 	//lista os patrimonios por nome
 	public ArrayList<String> listarTodosPatrimonios() {
@@ -86,7 +90,6 @@ public class Empresa {
 		}
 		return todosPatrimonios;
 	}
-	
 	
 	public ItemDePatrimonio buscarPatrimonio(String busca) {
 		ItemDePatrimonio encontrado;
@@ -105,5 +108,27 @@ public class Empresa {
 		return "============== Empresa " + nome + " ==============" +
 			   "\nCNPJ: "+ cnpj + "\nEmail: " + email + "\nTelefone: " +
 			   telefone + "\nEndereco: " + endereco;
+	}
+	
+	//Dados pré-cadastrados
+	public void fillWithSomeData() {
+		for(int l = 0; l < 5; l++) {
+			Filial temporaria = new Filial();
+			String nome = "Filial" + l;
+			long cnpj = 2391200429435L + l;
+			String email = "filial"+ l + "@email.com";
+			long telefone = 986243876 + l;
+			String endereco = "endereco" + l;
+			
+			temporaria.setCnpj(cnpj);
+			temporaria.setEmail(email);
+			temporaria.setEndereco(endereco);
+			temporaria.setNome(nome);
+			temporaria.setTelefone(telefone);
+			
+			filiais.add(temporaria);
+			
+		}
+		
 	}
 }

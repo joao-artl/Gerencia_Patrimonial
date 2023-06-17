@@ -6,18 +6,24 @@ import visao.*;
 import java.util.*;
 
 public class ControleEmpresa {
-	public TelaCadastro tela = new TelaCadastro(1);
-	public Empresa dados;
+	private TelaCadastro tela;
+	private Empresa dados = new Empresa();
+	
+	public ControleEmpresa() {
+		dados.fillWithSomeData();
+	}
 	
 	public void cadastroFilial() {
-		dados.setFiliais(tela.inserirEditar());
+		dados.setFiliais(tela.adicionarFilial());
 	}
+	
 	public Empresa getDados() {
 		return dados;
 	}
-
+	
 	public void setDados(Empresa dados) {
 		this.dados = dados;
 	}
+	
 	
 }

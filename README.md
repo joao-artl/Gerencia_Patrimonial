@@ -7,5 +7,5 @@ O projeto contém na primeira pasta:
 
 A segunda pasta possui a versão final do projeto que contém:
 - O minicenário criado para contextualizar o projeto
-- O diagrama de pacotes do projeto e o pacote modelo com as classes apresentadas no UML
+- O diagrama de pacotes do projeto
 - Todas as classes incluindo as telas e as classes de controle

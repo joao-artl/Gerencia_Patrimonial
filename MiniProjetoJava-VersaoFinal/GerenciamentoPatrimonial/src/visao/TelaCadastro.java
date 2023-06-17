@@ -43,12 +43,14 @@ public class TelaCadastro implements ActionListener {
             endereco = new JTextField(), tipo = new JTextField(),cnpj = new JTextField(),
             email = new JTextField(), telefone = new JTextField();
     
-    Filial filial = new Filial(null, 0, null, 0, null);
+    private Filial filial = new Filial();
+    private ControleEmpresa cEmpresa;
+    private ControleFiliais cFilais;
     
     int telaSelecionada;
-    public TelaCadastro(int tela) {
+    public TelaCadastro(int opTela) {
         //tela de cadastro de filial
-        if(tela == 1) {
+        if(opTela == 1) {
         	telaSelecionada = 1;
             janelaCadastro = new JFrame("Cadastro Filial");
             janelaCadastro.setBounds(10, 450, 500, 300);
@@ -91,7 +93,7 @@ public class TelaCadastro implements ActionListener {
         }
 
         //tela de cadastro de patrimonio
-        else if(tela == 2) {
+        else if(opTela == 2) {
         	telaSelecionada = 2;
             janelaCadastro = new JFrame("Cadastro Patrimônio");
             janelaCadastro.setBounds(1025, 450, 500, 300);
@@ -230,15 +232,26 @@ public class TelaCadastro implements ActionListener {
         janelaCadastro.repaint();
     }
     
-    public Filial inserirEditar() {
+    public void inserirEditar(int pos, ControleEmpresa c) {
+    	cEmpresa = c;
+    	Filial funcionaFilial = cEmpresa.getDados().getFiliais().get(pos);
+    	nome = new JTextField(funcionaFilial.getNome());
+    	
+    }
+    
+    public void inserirEditar(int pos, ControleFiliais c, int type) {
+    	cFilais = c;
+    	
+    }
+    
+    public Filial adicionarFilial() {
     	return filial;
     }
+    
     
     public void actionPerformed(ActionEvent event) {
         if(event.getSource() == salvar) {
         	if(telaSelecionada == 1) {
-        		
-        		// Filial filial = new Filial(null, 0, null, 0, null);
         		boolean sucesso;
         		
         			filial.setNome(nome.getText());
@@ -247,16 +260,21 @@ public class TelaCadastro implements ActionListener {
         			filial.setTelefone(Long.parseLong(telefone.getText()));
         			filial.setEndereco(endereco.getText());
         		
+        			/*
         			System.out.printf(filial.getTelefone() + "\n");
         			System.out.printf(filial.getEmail() + "\n");
         			System.out.printf(filial.getEndereco() + "\n");
-
+					*/
+        			
+        			
+        			//talvez seja melhor colocar isso na controle, justamente pra não fazer
+        			//essa conexão direta com a modelo
         			sucesso = filial.verificacaoCadastro(filial);
         			
         			if(sucesso == true) {
         				sucessoCadastro();
-        				
         			}
+        			
         			else {
         				erroCadastro();
         			}

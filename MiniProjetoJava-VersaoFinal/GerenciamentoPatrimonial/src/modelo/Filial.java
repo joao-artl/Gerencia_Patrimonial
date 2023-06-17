@@ -10,6 +10,9 @@ public class Filial {
 	private String endereco;
 	private ArrayList<ItemDePatrimonio> patrimonios = new ArrayList<ItemDePatrimonio>();
 	
+	public Filial() {
+	}
+	
 	public Filial(String nome, long cnpj, String email, long telefone, String endereco) {
 		this.nome = nome;
 		this.cnpj = cnpj;
@@ -72,8 +75,8 @@ public class Filial {
         	    email + "\nTelefone: " + telefone + "\nEndereco: " + endereco;
     }
     
+    //talvez seja melhor colocar isso na controle
     public boolean verificacaoCadastro(Filial filial)	{
-
 		if(filial.getNome() == null ||  filial.getEmail() == null || filial.getEndereco() == null) {
 			return false;
 		}
