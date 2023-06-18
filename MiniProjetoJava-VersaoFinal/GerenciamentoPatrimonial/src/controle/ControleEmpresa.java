@@ -13,10 +13,12 @@ public class ControleEmpresa {
 		dados.fillWithSomeData();
 	}
 	
-	public void cadastroFilial() {
-		dados.setFiliais(tela.adicionarFilial());
+	public void cadastroFilial(Filial f) {
+		dados.setFiliais(f);
 	}
-	
+	public void apagarFilial(int x){
+		dados.getFiliais().remove(x);
+	}
 	public Empresa getDados() {
 		return dados;
 	}

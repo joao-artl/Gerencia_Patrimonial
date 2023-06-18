@@ -4,7 +4,7 @@ public abstract class ItemDePatrimonio {
 	protected String nome;
 	protected double valor;
 	protected int quantidade;
-
+	
 	public void setNome(String nome) {
 		this.nome = nome;
 	}

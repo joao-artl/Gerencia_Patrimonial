@@ -4,7 +4,6 @@ import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.InterruptedIOException;
 
 import controle.*;
 
@@ -51,17 +50,18 @@ public class TelaFilial implements ActionListener ,ListSelectionListener {
 	
 	public void actionPerformed(ActionEvent event) {
 		if(event.getSource() == cadastrar) {
-			new TelaCadastro(1);
+			new TelaCadastro().inserirEditar(0, dadosEmpresa, true);
 		}
 		
 		else if(event.getSource() == atualizar) {
-			
+			filiais.setListData(dadosEmpresa.getDados().getNomesFiliais());			
+			filiais.updateUI();
 		}
 	}
 	
 	public void valueChanged(ListSelectionEvent event) {
 		if(event.getValueIsAdjusting() && event.getSource() == filiais) {
-			new TelaCadastro(1).inserirEditar(filiais.getSelectedIndex(), dadosEmpresa);
+			new TelaCadastro().inserirEditar(filiais.getSelectedIndex(), dadosEmpresa, false);
 		}
 	}
 	

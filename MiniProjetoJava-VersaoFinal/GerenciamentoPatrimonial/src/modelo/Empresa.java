@@ -70,7 +70,7 @@ public class Empresa {
 	}
 	
 	public String[] getNomesFiliais() {
-		int t = getFiliais().size();
+		int t = filiais.size();
 		String s[] = new String[t];
 		int i = 0;
 		for(Filial j: filiais) { 
@@ -126,8 +126,7 @@ public class Empresa {
 			temporaria.setNome(nome);
 			temporaria.setTelefone(telefone);
 			
-			filiais.add(temporaria);
-			
+			filiais.add(temporaria);	
 		}
 		
 	}
