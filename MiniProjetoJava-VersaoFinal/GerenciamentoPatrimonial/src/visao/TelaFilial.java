@@ -4,7 +4,6 @@ import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
-
 import controle.*;
 
 public class TelaFilial implements ActionListener ,ListSelectionListener {
@@ -15,19 +14,23 @@ public class TelaFilial implements ActionListener ,ListSelectionListener {
 	private Color cinzinha = new Color(230, 230, 230);
 	private JList<String> filiais;
 	private ControleEmpresa dadosEmpresa;
+	private JScrollPane barraRolagem;
 	
-	public TelaFilial() {
-		dadosEmpresa = new ControleEmpresa();
+	public TelaFilial(ControleEmpresa dadosEmpresa) {
+		this.dadosEmpresa = dadosEmpresa;
 		filiais = new JList<String>(dadosEmpresa.getDados().getNomesFiliais());
+		barraRolagem = new JScrollPane(filiais);
 		
 		janelaFiliais.setLayout(null);
 		janelaFiliais.setBounds(10, 100, 500, 300);
 		
 		cadastrar.setBounds(20, 220, 100, 30);
 		atualizar.setBounds(360, 220, 100, 30);
-		filiais.setBounds(30, 50, 300, 120);
+		barraRolagem.setBounds(30, 50, 300, 120);
 		textoFiliais.setBounds(215, 5, 100, 30);
 		textoFiliais.setFont(new Font("Arial", Font.BOLD, 14));
+		
+		barraRolagem.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		
 		cadastrar.setBackground(cinzinha);
 		atualizar.setBackground(cinzinha);
@@ -35,7 +38,7 @@ public class TelaFilial implements ActionListener ,ListSelectionListener {
 		janelaFiliais.add(cadastrar);
 		janelaFiliais.add(atualizar);
 		janelaFiliais.add(textoFiliais);
-		janelaFiliais.add(filiais);
+		janelaFiliais.add(barraRolagem);
 		
 		janelaFiliais.setVisible(true);
 		
@@ -50,7 +53,7 @@ public class TelaFilial implements ActionListener ,ListSelectionListener {
 	
 	public void actionPerformed(ActionEvent event) {
 		if(event.getSource() == cadastrar) {
-			new TelaCadastro().inserirEditar(0, dadosEmpresa, true);
+			new TelaCadastro().inserirEditar(dadosEmpresa.getDados().getFiliais().size(), dadosEmpresa, true);
 		}
 		
 		else if(event.getSource() == atualizar) {

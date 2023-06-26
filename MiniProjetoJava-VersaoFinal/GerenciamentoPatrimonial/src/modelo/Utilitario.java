@@ -5,10 +5,10 @@ public class Utilitario extends ItemDePatrimonio {
 	private String funcao;
 	
 	public Utilitario() {
-		super();
 	}
 	
 	public Utilitario(String nome, String descricao, String funcao, double valor, int quantidade) {
+		super();
 		this.nome = nome;
 		this.descricao = descricao;
 		this.funcao = funcao;

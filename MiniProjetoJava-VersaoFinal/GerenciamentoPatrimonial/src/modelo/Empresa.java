@@ -81,28 +81,15 @@ public class Empresa {
 	}
 	
 	//lista os patrimonios por nome
-	public ArrayList<String> listarTodosPatrimonios() {
+	public String[] listarTodosPatrimonios() {
 		ArrayList<String> todosPatrimonios = new ArrayList<String>();
 		for(Filial i: filiais) {
 			for(ItemDePatrimonio j: i.getPatrimonios()) {
 				todosPatrimonios.add(j.getNome());	
 			}
 		}
-		return todosPatrimonios;
+		return todosPatrimonios.toArray(new String[0]);
 	}
-	
-	public ItemDePatrimonio buscarPatrimonio(String busca) {
-		ItemDePatrimonio encontrado;
-		for(Filial i: filiais) {
-			for(ItemDePatrimonio j: i.getPatrimonios()) {
-				if(j.getNome().equals(busca)) {
-					encontrado = j;
-					return encontrado;
-				}
-			}
-		}
-		return null;
-	}	
 	
 	public String toString() {
 		return "============== Empresa " + nome + " ==============" +

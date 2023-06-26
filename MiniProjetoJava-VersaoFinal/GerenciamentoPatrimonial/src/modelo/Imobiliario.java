@@ -6,10 +6,10 @@ public class Imobiliario extends ItemDePatrimonio {
 	private String endereco;
 	
 	public Imobiliario() {
-		super();
 	}
 	
 	public Imobiliario(String nome, String tipo, double area, double valor, String endereco) {
+		super();
 		this.nome = nome;
 		this.tipo = tipo;
 		this.area = area;

@@ -6,11 +6,11 @@ public class Veiculo extends ItemDePatrimonio {
 	private String fabricante;
 	
 	public Veiculo() {
-		super();
 	}
 	
 	public Veiculo(String nome, String cor, String modelo,
 				   String fabricante, double valor, int quantidade) {
+		super();
 		this.nome = nome;
 		this.cor = cor;
 		this.modelo = modelo;
