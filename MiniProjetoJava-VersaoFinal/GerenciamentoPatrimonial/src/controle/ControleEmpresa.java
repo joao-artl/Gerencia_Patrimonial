@@ -88,7 +88,10 @@ public class ControleEmpresa {
 			Filial filial = new Filial(f[0], Long.parseLong(f[1]), f[2], Long.parseLong(f[3]), f[4]);
 			for (int i = 0; i < dados.getFiliais().size(); i++) {
 				if (i == pos) {
+					ArrayList<ItemDePatrimonio> existentes = dados.getFiliais().get(pos).getPatrimonios();
 					dados.getFiliais().set(pos, filial);
+					
+					dados.getFiliais().get(pos).setPatrimonios(existentes);
 					return true;
 				}
 			}

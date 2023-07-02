@@ -28,6 +28,7 @@ public class TelaFilial implements ActionListener, ListSelectionListener {
 	 * 
 	 * @param dadosEmpresa, faz referencia ao ControleEmpresa
 	 */
+	
 	public TelaFilial(ControleEmpresa dadosEmpresa) {
 		this.dadosEmpresa = dadosEmpresa;
 		filiais = new JList<String>(dadosEmpresa.getDados().getNomesFiliais());

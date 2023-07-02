@@ -79,6 +79,10 @@ public class Filial {
 	public String getEndereco() {
 		return endereco;
 	}
+	
+	public void setPatrimonios(ArrayList<ItemDePatrimonio> novosPatrimonios) {
+		patrimonios = novosPatrimonios;
+	}
 
 	public void setPatrimonios(ItemDePatrimonio novoPatrimonio) {
 		patrimonios.add(novoPatrimonio);
