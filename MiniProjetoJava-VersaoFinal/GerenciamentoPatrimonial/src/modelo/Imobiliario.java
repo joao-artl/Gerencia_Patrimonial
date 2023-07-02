@@ -1,5 +1,13 @@
 package modelo;
 
+/**
+ * Subclasse de ItemDePatrimonio, representa um item do tipo Imobiliario
+ * contendo informacoes especificas como area, tipo e endereco
+ * @author Joao Artur Leles Ferreira Pinheiro e Weverton Rodrigues da Costa Silva
+ * @since 2023
+ * @version 1.0
+ */
+
 public class Imobiliario extends ItemDePatrimonio {
 	private double area;
 	private String tipo;
@@ -8,7 +16,17 @@ public class Imobiliario extends ItemDePatrimonio {
 	public Imobiliario() {
 	}
 	
-	public Imobiliario(String nome, String tipo, double area, double valor, String endereco) {
+	/**
+	 * Construtor Imobiliario
+	 * @param nome
+	 * @param tipo
+	 * @param area
+	 * @param valor
+	 * @param endereco
+	 */
+	
+	public Imobiliario(String nome, String tipo, double area, 
+					   double valor, String endereco) {
 		super();
 		this.nome = nome;
 		this.tipo = tipo;

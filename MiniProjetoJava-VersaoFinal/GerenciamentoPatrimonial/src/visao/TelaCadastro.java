@@ -1,5 +1,11 @@
 package visao;
 
+/**
+ * Classe que e responsavel pelas telas de cadastro
+ * @author Joao Artur Leles Ferreira Pinheiro e Weverton Rodrigues da Costa Silva
+ * @since  2023
+ * @version 1.0
+ */
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -11,13 +17,13 @@ public class TelaCadastro implements ActionListener {
 
 	private JButton salvar = new JButton("salvar");
 	private JButton excluir = new JButton("excluir");
-	private JButton patrimonios = new JButton("Patrimônios");
-	private JButton imobiliario = new JButton("Imobiliário");
-	private JButton utilitario = new JButton("Utilitário");
-	private JButton veiculo = new JButton("Veículo");
+	private JButton patrimonios = new JButton("patrimônios");
+	private JButton imobiliario = new JButton("imobiliário");
+	private JButton utilitario = new JButton("utilitário");
+	private JButton veiculo = new JButton("veículo");
 
 	private Font arial = new Font("Arial", Font.BOLD, 14);
-	private Color cinzinha = new Color(230, 230, 230);
+	private Color branco = new Color(255, 255, 255);
 
 	private JLabel textoNome = new JLabel("Nome:");
 	private JLabel textoValor = new JLabel("Valor: R$");
@@ -34,19 +40,27 @@ public class TelaCadastro implements ActionListener {
 	private JLabel textoEmail = new JLabel("Email:");
 	private JLabel textoTelefone = new JLabel("Telefone:");
 
-	private JTextField nome, valor, quantidade, descricao, funcao, 
-					   cor, modelo, fabricante, area, endereco, tipo,
-					   cnpj, email, telefone;
-	
-	private ControleEmpresa cEmpresa;
-	private int fTemporaria, pTemporaria, op;
+	private JTextField nome, valor, quantidade, descricao, funcao, cor, modelo, fabricante, area, endereco, tipo, cnpj,
+			email, telefone;
+
+	private ControleEmpresa dados;
+	private int posF, posP, op;
 
 	int telaSelecionada;
+	boolean novo;
 
-	public void inserirEditar(int pos, ControleEmpresa c, boolean novo) {
+	/**
+	 * Cadastra as filiais e mostra detalhes das ja existentes permitindo edicao
+	 * 
+	 * @param pos,  posicao da filial no ArrayList
+	 * @param d,    referencia da ControleEmpresa
+	 * @param novo, indica se o filial e nova ou nao
+	 */
+	public void inserirEditar(int pos, ControleEmpresa d, boolean novo) {
 		telaSelecionada = 1;
-		cEmpresa = c;
-		fTemporaria = pos;
+		dados = d;
+		posF = pos;
+		this.novo = novo;
 
 		// tela de cadastro de filial
 		if (novo == true) {
@@ -58,21 +72,22 @@ public class TelaCadastro implements ActionListener {
 		}
 
 		else {
-			nome = new JTextField(cEmpresa.getDados().getFiliais().get(pos).getNome());
-			cnpj = new JTextField(String.valueOf(cEmpresa.getDados().getFiliais().get(pos).getCnpj()));
-			email = new JTextField(cEmpresa.getDados().getFiliais().get(pos).getEmail());
-			telefone = new JTextField(String.valueOf(cEmpresa.getDados().getFiliais().get(pos).getTelefone()));
-			endereco = new JTextField(cEmpresa.getDados().getFiliais().get(pos).getEndereco());	
+			nome = new JTextField(dados.getDados().getFiliais().get(pos).getNome());
+			cnpj = new JTextField(String.valueOf(dados.getDados().getFiliais().get(pos).getCnpj()));
+			email = new JTextField(dados.getDados().getFiliais().get(pos).getEmail());
+			telefone = new JTextField(String.valueOf(dados.getDados().getFiliais().get(pos).getTelefone()));
+			endereco = new JTextField(dados.getDados().getFiliais().get(pos).getEndereco());
 		}
 
 		janelaCadastro = new JFrame("Cadastro Filial");
 		janelaCadastro.setBounds(10, 450, 500, 300);
+		janelaCadastro.getContentPane().setBackground(new Color(242, 236, 236));
 
-		textoNome.setBounds(40, 30, 60, 20);
-		textoCnpj.setBounds(40, 60, 60, 20);
-		textoEmail.setBounds(40, 90, 60, 20);
-		textoTelefone.setBounds(40, 120, 80, 20);
-		textoEndereco.setBounds(40, 150, 80, 20);
+		textoNome.setBounds(67, 30, 60, 20);
+		textoCnpj.setBounds(70, 60, 60, 20);
+		textoEmail.setBounds(67, 90, 60, 20);
+		textoTelefone.setBounds(47, 120, 80, 20);
+		textoEndereco.setBounds(43, 150, 80, 20);
 		nome.setBounds(120, 30, 250, 23);
 		cnpj.setBounds(120, 60, 250, 23);
 		email.setBounds(120, 90, 250, 23);
@@ -80,7 +95,7 @@ public class TelaCadastro implements ActionListener {
 		endereco.setBounds(120, 150, 250, 23);
 		patrimonios.setBounds(185, 220, 105, 30);
 
-		patrimonios.setBackground(cinzinha);
+		patrimonios.setBackground(branco);
 
 		textoNome.setFont(arial);
 		textoCnpj.setFont(arial);
@@ -111,8 +126,8 @@ public class TelaCadastro implements ActionListener {
 		salvar.setBounds(20, 220, 100, 30);
 		excluir.setBounds(360, 220, 100, 30);
 
-		salvar.setBackground(cinzinha);
-		excluir.setBackground(cinzinha);
+		salvar.setBackground(branco);
+		excluir.setBackground(branco);
 
 		janelaCadastro.add(salvar);
 		janelaCadastro.add(excluir);
@@ -124,15 +139,25 @@ public class TelaCadastro implements ActionListener {
 		excluir.addActionListener(this);
 	}
 
-	public void inserirEditar(int posf, int pos, ControleEmpresa c, int op, boolean novo) {
+	/**
+	 * Cadastra os patrimonios e mostra detalhes das ja existentes permitindo edicao
+	 * 
+	 * @param posf, indica posicao da filial no ArrayList
+	 * @param pos,  indica posicao do patrimonio no ArrayList
+	 * @param d,    referencia da ControleEmpresa
+	 * @param op,   verifica o tipo de patrimonio do ItemDePatrimonio
+	 * @param novo, indica se o patrimonio e novo ou nao
+	 */
+	public void inserirEditar(int posf, int pos, ControleEmpresa d, int op, boolean novo) {
 		telaSelecionada = 2;
-		cEmpresa = c;
+		dados = d;
 		this.op = op;
-		fTemporaria = posf;
-		pTemporaria = pos;
+		posF = posf;
+		posP = pos;
 
 		janelaCadastro = new JFrame("Cadastro Patrimônio");
 		janelaCadastro.setBounds(1025, 450, 500, 300);
+		janelaCadastro.getContentPane().setBackground(new Color(242, 236, 236));
 
 		if (novo == true) {
 			nome = new JTextField();
@@ -162,30 +187,32 @@ public class TelaCadastro implements ActionListener {
 		}
 
 		else if (novo == false) {
-			nome = new JTextField(cEmpresa.getFilial(fTemporaria).getPatrimonios().get(pos).getNome());
-			valor = new JTextField(String.valueOf(cEmpresa.getFilial(fTemporaria).getPatrimonios().get(pos).getValor()));
-			quantidade = new JTextField(String.valueOf(cEmpresa.getFilial(fTemporaria).getPatrimonios().get(pos).getQuantidade()));
-			
+			nome = new JTextField(dados.getFilial(posF).getPatrimonios().get(pos).getNome());
+			valor = new JTextField(String.valueOf(dados.getFilial(posF).getPatrimonios().get(pos).getValor()));
+			quantidade = new JTextField(
+					String.valueOf(dados.getFilial(posF).getPatrimonios().get(pos).getQuantidade()));
+
 			// Imobiliario
 			if (op == 1) {
-				tipo = new JTextField(cEmpresa.getControleFiliais().converterImobiliario(fTemporaria, pos).getTipo());
-				area = new JTextField(String.valueOf(cEmpresa.getControleFiliais().converterImobiliario(fTemporaria, pos).getArea()));
-				endereco = new JTextField(cEmpresa.getControleFiliais().converterImobiliario(fTemporaria, pos).getEndereco());
+				tipo = new JTextField(dados.getControleFiliais().converterImobiliario(posF, pos).getTipo());
+				area = new JTextField(
+						String.valueOf(dados.getControleFiliais().converterImobiliario(posF, pos).getArea()));
+				endereco = new JTextField(dados.getControleFiliais().converterImobiliario(posF, pos).getEndereco());
 				CadastroPatrimonio("Imobiliario");
 			}
 
 			// Utilitario
 			else if (op == 2) {
-				descricao = new JTextField(cEmpresa.getControleFiliais().converterUtilitario(fTemporaria, pos).getDescricao());
-				funcao = new JTextField(cEmpresa.getControleFiliais().converterUtilitario(fTemporaria, pos).getFuncao());
+				descricao = new JTextField(dados.getControleFiliais().converterUtilitario(posF, pos).getDescricao());
+				funcao = new JTextField(dados.getControleFiliais().converterUtilitario(posF, pos).getFuncao());
 				CadastroPatrimonio("Utilitario");
 			}
 
 			// Veiculo
 			else if (op == 3) {
-				cor = new JTextField(cEmpresa.getControleFiliais().converterVeiculo(fTemporaria, pos).getCor());
-				modelo = new JTextField(cEmpresa.getControleFiliais().converterVeiculo(fTemporaria, pos).getModelo());
-				fabricante = new JTextField(cEmpresa.getControleFiliais().converterVeiculo(fTemporaria, pos).getFabricante());
+				cor = new JTextField(dados.getControleFiliais().converterVeiculo(posF, pos).getCor());
+				modelo = new JTextField(dados.getControleFiliais().converterVeiculo(posF, pos).getModelo());
+				fabricante = new JTextField(dados.getControleFiliais().converterVeiculo(posF, pos).getFabricante());
 				CadastroPatrimonio("Veiculo");
 			}
 		}
@@ -194,9 +221,9 @@ public class TelaCadastro implements ActionListener {
 		utilitario.setBounds(185, 15, 100, 20);
 		veiculo.setBounds(365, 15, 100, 20);
 
-		imobiliario.setBackground(cinzinha);
-		utilitario.setBackground(cinzinha);
-		veiculo.setBackground(cinzinha);
+		imobiliario.setBackground(branco);
+		utilitario.setBackground(branco);
+		veiculo.setBackground(branco);
 
 		janelaCadastro.add(imobiliario);
 		janelaCadastro.add(utilitario);
@@ -213,8 +240,8 @@ public class TelaCadastro implements ActionListener {
 		salvar.setBounds(20, 220, 100, 30);
 		excluir.setBounds(360, 220, 100, 30);
 
-		salvar.setBackground(cinzinha);
-		excluir.setBackground(cinzinha);
+		salvar.setBackground(branco);
+		excluir.setBackground(branco);
 
 		janelaCadastro.add(salvar);
 		janelaCadastro.add(excluir);
@@ -224,12 +251,18 @@ public class TelaCadastro implements ActionListener {
 
 		salvar.addActionListener(this);
 		excluir.addActionListener(this);
-		
+
 	}
 
+	/**
+	 * Metodo que divide os tipos de patrimonio para seu cadastro
+	 * 
+	 * @param patri, nome do patrimonio
+	 */
 	public void CadastroPatrimonio(String patri) {
 		painelCadastro.removeAll();
 		painelCadastro.setBounds(5, 30, 475, 190);
+		painelCadastro.setBackground(new Color(242, 236, 236));
 
 		textoNome.setFont(arial);
 		textoNome.setBounds(67, 35, 100, 15);
@@ -324,116 +357,135 @@ public class TelaCadastro implements ActionListener {
 		janelaCadastro.repaint();
 	}
 
+	/**
+	 * Eventos relacionados aos botoes
+	 */
 	public void actionPerformed(ActionEvent event) {
-		Boolean sucesso = true;
+		boolean sucesso = false;
 		if (event.getSource() == salvar) {
 			if (telaSelecionada == 1) {
 				String[] filial = new String[5];
-				
+
 				filial[0] = nome.getText();
 				filial[1] = cnpj.getText();
 				filial[2] = email.getText();
 				filial[3] = telefone.getText();
 				filial[4] = endereco.getText();
-				
-				sucesso = cEmpresa.cadastroFilial(filial, fTemporaria);
+
+				sucesso = dados.cadastrarEditarFilial(filial, posF);
 			}
-			
+
 			else if (telaSelecionada == 2) {
 				String[] patrimonio = new String[6];
-				
+
 				patrimonio[0] = nome.getText();
 				patrimonio[1] = valor.getText();
-				//Imobiliario
-				if(op == 1) {
+				// Imobiliario
+				if (op == 1) {
 					patrimonio[2] = tipo.getText();
 					patrimonio[3] = area.getText();
 					patrimonio[4] = endereco.getText();
-					sucesso = cEmpresa.getControleFiliais().cadastroPatrimonio(patrimonio, fTemporaria, pTemporaria, 1);
+					sucesso = dados.getControleFiliais().cadastroPatrimonio(patrimonio, posF, posP, 1);
 				}
-				
-				//Utilitario
-				else if(op == 2) {
+
+				// Utilitario
+				else if (op == 2) {
 					patrimonio[2] = descricao.getText();
 					patrimonio[3] = funcao.getText();
 					patrimonio[4] = quantidade.getText();
-					sucesso = cEmpresa.getControleFiliais().cadastroPatrimonio(patrimonio, fTemporaria, pTemporaria, 2);
+					sucesso = dados.getControleFiliais().cadastroPatrimonio(patrimonio, posF, posP, 2);
 				}
-				
-				//Veiculo
-				else if(op == 3) {
-					
+
+				// Veiculo
+				else if (op == 3) {
 					patrimonio[2] = cor.getText();
 					patrimonio[3] = modelo.getText();
 					patrimonio[4] = fabricante.getText();
 					patrimonio[5] = quantidade.getText();
-					sucesso = cEmpresa.getControleFiliais().cadastroPatrimonio(patrimonio, fTemporaria, pTemporaria, 3);
+					sucesso = dados.getControleFiliais().cadastroPatrimonio(patrimonio, posF, posP, 3);
 				}
 			}
 
-			if (sucesso == true) 
+			if (sucesso == true)
 				sucessoCadastro();
-			
-			else 
+
+			else
 				erroCadastro();
-			
+
 			salvar.removeActionListener(this);
 		}
 
 		else if (event.getSource() == excluir) {
-			if (telaSelecionada == 1) 
-			cEmpresa.apagarFilial(fTemporaria);
-			
-			else if(telaSelecionada == 2)
-				cEmpresa.getControleFiliais().apagarPatrimonio(pTemporaria, fTemporaria);
-			
+			if (telaSelecionada == 1)
+				dados.apagarFilial(posF);
+
+			else if (telaSelecionada == 2)
+				dados.getControleFiliais().apagarPatrimonio(posP, posF);
+
 			sucessoExclusao();
 		}
 
 		else if (event.getSource() == patrimonios) {
-			new TelaPatrimonio(cEmpresa, fTemporaria);
+			if (sucesso == true || novo == false)
+				new TelaPatrimonio(dados, posF);
+
+			else
+				JOptionPane.showMessageDialog(null, "Preencha os campos e clique em salvar\n" + "antes de continuar",
+						null, JOptionPane.ERROR_MESSAGE);
 		}
 
 		else if (event.getSource() == imobiliario) {
 			janelaCadastro.dispose();
-			inserirEditar(fTemporaria, pTemporaria, cEmpresa, 1, true);
+			inserirEditar(posF, posP, dados, 1, true);
 		}
 
 		else if (event.getSource() == utilitario) {
 			janelaCadastro.dispose();
-			inserirEditar(fTemporaria, pTemporaria, cEmpresa, 2, true);
+			inserirEditar(posF, posP, dados, 2, true);
 		}
 
 		else if (event.getSource() == veiculo) {
 			janelaCadastro.dispose();
-			inserirEditar(fTemporaria, pTemporaria, cEmpresa, 3, true);
+			inserirEditar(posF, posP, dados, 3, true);
 		}
 	}
 
+	/**
+	 * Metodo que retorna uma mensagem ao cadastrar
+	 */
 	public void sucessoCadastro() {
-		if(telaSelecionada == 1)
-			JOptionPane.showMessageDialog(null, "Filial Cadastrada", null, JOptionPane.INFORMATION_MESSAGE);
-		else 
-			JOptionPane.showMessageDialog(null, "Patrimônio Cadastrado", null, JOptionPane.INFORMATION_MESSAGE);
-		
+		if (telaSelecionada == 1)
+			JOptionPane.showMessageDialog(null, "Filial cadastrada / editada com sucesso", null,
+					JOptionPane.PLAIN_MESSAGE);
+		else
+			JOptionPane.showMessageDialog(null, "Patrimônio cadastrado / editado com sucesso", null,
+					JOptionPane.PLAIN_MESSAGE);
+
 		janelaCadastro.dispose();
 	}
 
+	/**
+	 * Metodo que retorna uma mensagem ao nao conseguir cadastrar
+	 */
 	public void erroCadastro() {
-		if(telaSelecionada == 1)
-			JOptionPane.showMessageDialog(null, "Erro ao cadastrar filial", null, JOptionPane.ERROR_MESSAGE);
-		else 
-			JOptionPane.showMessageDialog(null, "Erro ao cadastrar patrimônio", null, JOptionPane.ERROR_MESSAGE);
-		
+		if (telaSelecionada == 1)
+			JOptionPane.showMessageDialog(null, "Erro ao cadastrar / editar filial", null, JOptionPane.ERROR_MESSAGE);
+		else
+			JOptionPane.showMessageDialog(null, "Erro ao cadastrar / editar patrimônio", null,
+					JOptionPane.ERROR_MESSAGE);
+
 		janelaCadastro.dispose();
 	}
-	
+
+	/**
+	 * Metodo que retorna uma mensagem ao excluir
+	 */
 	public void sucessoExclusao() {
-		if(telaSelecionada == 1)
+		if (telaSelecionada == 1)
 			JOptionPane.showMessageDialog(null, "Filial Removida", null, JOptionPane.ERROR_MESSAGE);
 		else
 			JOptionPane.showMessageDialog(null, "Patrimônio Removido", null, JOptionPane.ERROR_MESSAGE);
-			
+
 		janelaCadastro.dispose();
 	}
 }

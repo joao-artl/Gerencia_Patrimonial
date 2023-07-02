@@ -2,14 +2,25 @@ package jUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-
 import controle.*;
-import modelo.Filial;
+
+/**
+ * Classe de testes unitarios
+ * @author Joao Artur e Weverton Rodrigues
+ * @since 2023
+ * @version 1.0
+ */
 
 class Teste {
 	ControleEmpresa controle = new ControleEmpresa();
 	ControleFiliais controleFiliais = new ControleFiliais(controle.getDados());
 
+	/**
+	 * Verifica se a filial esta sendo cadastrada/editada
+	 * corretamente na posicao do ArrayList indicada 
+	 * @return void
+	 */
+	
 	@Test
 	void testeCadastroFilial() {
 		String[] dadosFilial = new String[5];
@@ -21,8 +32,14 @@ class Teste {
 		dadosFilial[3] = "33213030";
 		dadosFilial[4] = "UnB";
 		
-		assertTrue(controle.cadastroFilial(dadosFilial, posicao));	
+		assertTrue(controle.cadastrarEditarFilial(dadosFilial, posicao));	
 	}
+	
+	/**
+	 * Verifica se o patrimonio esta sendo cadastrado/editado
+	 * na filial e posicao indicada do ArrayList
+	 * @return void
+	 */
 	
 	@Test
 	void testeCadastrarPatrimonio() {
@@ -39,6 +56,12 @@ class Teste {
 
 		assertTrue(controleFiliais.cadastroPatrimonio(dadosPatrimonio, posicaoFilial, posicaoPatrimonio, op));
 	}
+	
+	/**
+	 * Verifica se o metodo 'procurarPatrimonio' retorna as posicoes corretas
+	 * para o patrimonio passado como parametros
+	 * @return void
+	 */
 	
 	@Test
 	void testeEncontraFilial() {

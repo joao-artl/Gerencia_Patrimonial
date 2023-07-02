@@ -2,6 +2,15 @@ package modelo;
 
 import java.util.*;
 
+/**
+ * Classe que representa uma filial, contendo informacoes
+ * basicas para a criacao da mesma, alem de possuir 
+ * um ArrayList (lista) de patrimonios associados a ela
+ * @author Joao Artur Leles Ferreira Pinheiro e Weverton Rodrigues da Costa Silva
+ * @since 2023
+ * @version 1.0
+ */
+
 public class Filial {
 	private String nome;
 	private long cnpj;
@@ -12,8 +21,18 @@ public class Filial {
 
 	public Filial() {
 	}
+	
+	/**
+	 * Construtor Filial
+	 * @param nome
+	 * @param cnpj
+	 * @param email
+	 * @param telefone
+	 * @param endereco
+	 */
 
-	public Filial(String nome, long cnpj, String email, long telefone, String endereco) {
+	public Filial(String nome, long cnpj, String email,
+				  long telefone, String endereco) {
 		this.nome = nome;
 		this.cnpj = cnpj;
 		this.email = email;
@@ -69,6 +88,14 @@ public class Filial {
 		return patrimonios;
 	}
 
+	/**
+	 * Metodo que retorna um array de String
+	 * com os nomes de todos os patrimonios da filial
+	 * Percorre cada patrimonio cadastrado e obtem
+	 * seu respectivo nome
+	 * @return String[]
+	 */
+	
 	public String[] getNomesPatrimonios() {
 		int t = patrimonios.size();
 		String s[] = new String[t];
@@ -82,61 +109,7 @@ public class Filial {
 
 	// @Override
 	public String toString() {
-		return "\n---- Filial " + nome + " ----" + "\nCNPJ: " + cnpj + "\nEmail: " + email + "\nTelefone: " + telefone
-				+ "\nEndereco: " + endereco;
-	}
-
-	// talvez seja melhor colocar isso na controle
-	public boolean verificacaoCadastro(Filial filial) {
-		if (filial.getNome() == null || filial.getEmail() == null || filial.getEndereco() == null) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-
-	public void fillWithSomeData() {
-		for (int l = 0; l < 5; l++) {
-			ItemDePatrimonio temporaria;
-
-			if (l % 3 == 0) {
-				temporaria = new Imobiliario();
-				((Imobiliario) temporaria).setTipo("Ap");
-				((Imobiliario) temporaria).setArea(100 + l);
-				((Imobiliario) temporaria).setEndereco("SQN 32" + l);
-			}
-
-			else if (l % 3 == 1) {
-				temporaria = new Utilitario();
-				((Utilitario) temporaria).setDescricao("top de bola" + l);
-				((Utilitario) temporaria).setFuncao("Armazenamento" + l);
-			}
-
-			else {
-				temporaria = new Veiculo();
-				((Veiculo) temporaria).setCor("azul");
-				((Veiculo) temporaria).setModelo("GT");
-				((Veiculo) temporaria).setFabricante("Nissan");
-			}
-
-			String nome = "Item" + l;
-			double valor = 2000 + l;
-			int quantidade = l;
-
-			temporaria.setNome(nome);
-			temporaria.setValor(valor);
-			temporaria.setQuantidade(quantidade);
-
-			patrimonios.add(temporaria);
-		}
-}
-
-	@Override
-	public boolean equals(Object filial) {
-		if (this.nome == ((Filial) filial).getNome()) {
-			return true;
-		}
-		return false;
-
+		return "\n---- Filial " + nome + " ----" + "\nCNPJ: " + cnpj + "\nEmail: " + email
+				+ "\nTelefone: " + telefone + "\nEndereco: " + endereco;
 	}
 }

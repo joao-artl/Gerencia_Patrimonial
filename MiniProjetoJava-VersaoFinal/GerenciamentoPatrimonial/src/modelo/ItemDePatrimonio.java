@@ -1,5 +1,14 @@
 package modelo;
 
+/**
+ * Classe abstrada que representa um item de patrimonio, 
+ * contendo informacoes basicas de um item, como 
+ * nome, valor e quantidade
+ * @author Joao Artur Leles Ferreira Pinheiro e Weverton Rodrigues da Costa Silva
+ * @since 2023
+ * @version 1.0
+ */
+
 public abstract class ItemDePatrimonio {
 	protected String nome;
 	protected double valor;

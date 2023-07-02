@@ -1,7 +1,12 @@
 package visao;
 
+/**
+ * Classe que e responsavel por listar os patrimonios
+ * @author Joao Artur Leles Ferreira Pinheiro e Weverton Rodrigues da Costa Silva
+ * @since  2023
+ * @version 1.0
+ */
 import javax.swing.*;
-import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
 import controle.*;
@@ -11,44 +16,47 @@ public class TelaListaPatrimonios implements ActionListener {
 	private JLabel textoLista = new JLabel("Patrimônios da Empresa");
 	private JButton atualizar = new JButton("Atualizar");
 	private JList<String> patrimonios;
-	private ControleEmpresa dadosEmpresa;
+	private ControleEmpresa dados;
 	private JScrollPane barraRolagem;
-	
+
+	/**
+	 * Construtor da TelaListaPatrimonios
+	 * 
+	 * @param dadosEmpresa
+	 */
 	public TelaListaPatrimonios(ControleEmpresa dadosEmpresa) {
-		this.dadosEmpresa = dadosEmpresa;
-		patrimonios = new JList<String>(dadosEmpresa.getDados().listarTodosPatrimonios());
+		this.dados = dadosEmpresa;
+		patrimonios = new JList<String>(dados.getDados().listarTodosPatrimonios());
 		barraRolagem = new JScrollPane(patrimonios);
-		
+
 		janelaLista.setLayout(null);
 		janelaLista.setBounds(515, 505, 500, 300);
-		barraRolagem.setBounds(30, 50, 300, 120);
-		atualizar.setBounds(360, 220, 100, 30);
-		textoLista.setBounds(155, 5, 175, 30);
-		textoLista.setFont(new Font("Arial", Font.BOLD, 14));
-		
-		//patrimonios.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-		patrimonios.setVisibleRowCount(10);
-		
+		janelaLista.getContentPane().setBackground(new Color(242, 236, 236));
+
+		barraRolagem.setBounds(90, 45, 300, 150);
+		atualizar.setBounds(160, 220, 150, 30);
+		textoLista.setBounds(150, 5, 200, 30);
+		textoLista.setFont(new Font("Arial", Font.BOLD, 16));
+
+		atualizar.setBackground(new Color(255, 255, 255));
+
 		barraRolagem.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		
-		atualizar.addActionListener(this);
-		
+
 		janelaLista.add(textoLista);
-		//janelaLista.add(patrimonios);
 		janelaLista.add(barraRolagem);
 		janelaLista.add(atualizar);
 		janelaLista.setVisible(true);
-	}
-	
-	public void actionPerformed(ActionEvent event) {
-		if(event.getSource() == atualizar) {
-			patrimonios.setListData(dadosEmpresa.getDados().listarTodosPatrimonios());			
-			patrimonios.updateUI();
-		}
+
+		atualizar.addActionListener(this);
 	}
 
-	public void valueChanged(ListSelectionEvent event) {
-		if(event.getValueIsAdjusting() && event.getSource() == patrimonios) {
+	/**
+	 * Eventos relacionados ao JList
+	 */
+	public void actionPerformed(ActionEvent event) {
+		if (event.getSource() == atualizar) {
+			patrimonios.setListData(dados.getDados().listarTodosPatrimonios());
+			patrimonios.updateUI();
 		}
 	}
 }
