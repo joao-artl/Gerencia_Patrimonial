@@ -1,20 +1,19 @@
 package controle;
 
+import modelo.*;
+
 /**
  * Classe que controla os metodos da classe Filial e simula banco de dados
  * @author Joao Artur Leles Ferreira Pinheiro e Weverton Rodrigues da Costa Silva
- * @since  2023
+ * @since 2023
  * @version 1.0
  */
-
-import modelo.*;
 
 public class ControleFiliais {
 	private Empresa empresa;
 
 	/**
 	 * Construtor da classe
-	 * 
 	 * @param empresa
 	 */
 	public ControleFiliais(Empresa empresa) {
@@ -24,9 +23,9 @@ public class ControleFiliais {
 	/**
 	 * Metodo que verifica a qual tipo de patrimonio um determinado item pertence
 	 * 
-	 * @param posF, posicao da filial no ArrayList
-	 * @param posP, posicao do patrimonio no ArrayList
-	 * @return int
+	 * @param posF  posicao da filial no ArrayList
+	 * @param posP  posicao do patrimonio no ArrayList
+	 * @return int  indica o tipo de patrimonio (1 para Imobiliario, 2 para Utilitario e 3 para Veiculo)
 	 */
 	public int verificarInstancia(int posF, int posP) {
 		ItemDePatrimonio item = empresa.getFiliais().get(posF).getPatrimonios().get(posP);
@@ -43,10 +42,10 @@ public class ControleFiliais {
 	}
 
 	/**
-	 * Metodo que faz o cast de um ItemDePatrimonio para um Imobiliario
+	 * Metodo que faz o cast de um ItemDePatrimonio para Imobiliario
 	 * 
-	 * @param posF, posicao da filial no ArrayList
-	 * @param posP, posicao do patrimonio no ArrayList
+	 * @param posF  posicao da filial no ArrayList
+	 * @param posP  posicao do patrimonio no ArrayList
 	 * @return Imobiliario
 	 */
 	public Imobiliario converterImobiliario(int posF, int posP) {
@@ -55,10 +54,10 @@ public class ControleFiliais {
 	}
 
 	/**
-	 * Metodo que faz o cast de um ItemDePatrimonio para um Utilitario
+	 * Metodo que faz o cast de um ItemDePatrimonio para Utilitario
 	 * 
-	 * @param posF, posicao da filial no ArrayList
-	 * @param posP, posicao do patrimonio no ArrayList
+	 * @param posF  posicao da filial no ArrayList
+	 * @param posP  posicao do patrimonio no ArrayList
 	 * @return Utilitario
 	 */
 	public Utilitario converterUtilitario(int posF, int posP) {
@@ -67,10 +66,10 @@ public class ControleFiliais {
 	}
 
 	/**
-	 * Metodo que faz o cast de um ItemDePatrimonio para um Veiculo
+	 * Metodo que faz o cast de um ItemDePatrimonio para Veiculo
 	 * 
-	 * @param posF, posicao da filial no ArrayList
-	 * @param posP, posicao do patrimonio no ArrayList
+	 * @param posF  posicao da filial no ArrayList
+	 * @param posP  posicao do patrimonio no ArrayList
 	 * @return Veiculo
 	 */
 	public Veiculo converterVeiculo(int posF, int posP) {
@@ -81,10 +80,10 @@ public class ControleFiliais {
 	/**
 	 * Metodo que cadastra um patrimonio
 	 * 
-	 * @param p,    recebe String com os dados do patrimonio
-	 * @param posF, indica a posicao do patrimonio no ArrayList
-	 * @param posP, indica a posicao do patrimonio no ArrayList
-	 * @param op,   indica o tipo de patrimonio
+	 * @param p  vetor de String com os dados do patrimonio
+	 * @param posF  indica a posicao da filial no ArrayList
+	 * @param posP  indica a posicao do patrimonio no ArrayList
+	 * @param op  indica o tipo de patrimonio
 	 * @return boolean
 	 */
 	public boolean cadastroPatrimonio(String[] p, int posF, int posP, int op) {
@@ -121,9 +120,8 @@ public class ControleFiliais {
 	/**
 	 * Metodo que recebe dois int e remove um patrimonio do ArrayList
 	 * 
-	 * @param x, int que corresponde ao indice do patrimonio selecionado
-	 * @param f, int que corresponde ao indice da filial que possui o patrimonio
-	 *           selecionado
+	 * @param x  corresponde ao indice do patrimonio selecionado
+	 * @param f  corresponde ao indice da filial que possui o patrimonio selecionado
 	 */
 	public void apagarPatrimonio(int x, int f) {
 		empresa.getFiliais().get(f).getPatrimonios().remove(x);

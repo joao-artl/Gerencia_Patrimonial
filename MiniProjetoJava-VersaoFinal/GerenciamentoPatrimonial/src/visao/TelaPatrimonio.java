@@ -1,16 +1,17 @@
 package visao;
 
+import javax.swing.*;
+import javax.swing.event.*;
+import java.awt.*;
+import java.awt.event.*;
+import controle.*;
+
 /**
  * Classe que e responsavel pelos detalhes do patrimonio
  * @author Joao Artur Leles Ferreira Pinheiro e Weverton Rodrigues da Costa Silva
  * @since  2023
  * @version 1.0
  */
-import javax.swing.*;
-import javax.swing.event.*;
-import java.awt.*;
-import java.awt.event.*;
-import controle.*;
 
 public class TelaPatrimonio implements ActionListener, ListSelectionListener {
 	private JFrame janelaPatrimonios = new JFrame("Patrimônios");

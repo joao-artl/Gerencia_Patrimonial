@@ -1,16 +1,17 @@
 package visao;
 
+import javax.swing.*;
+import javax.swing.event.*;
+import java.awt.*;
+import java.awt.event.*;
+import controle.*;
+
 /**
  * Classe que e responsavel pelas informacoes da filial
  * @author Joao Artur Leles Ferreira Pinheiro e Weverton Rodrigues da Costa Silva
  * @since  2023
  * @version 1.0
  */
-import javax.swing.*;
-import javax.swing.event.*;
-import java.awt.*;
-import java.awt.event.*;
-import controle.*;
 
 public class TelaFilial implements ActionListener, ListSelectionListener {
 	private JFrame janelaFiliais = new JFrame("Filiais");

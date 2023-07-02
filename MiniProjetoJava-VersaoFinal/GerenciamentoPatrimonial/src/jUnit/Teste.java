@@ -64,7 +64,7 @@ class Teste {
 	 */
 	
 	@Test
-	void testeEncontraFilial() {
+	void testeEncontrarFilial() {
 		int[] posicoes = {0,0,1};
 		assertArrayEquals(posicoes, controle.procurarPatrimonio("Item0"));
 	}	

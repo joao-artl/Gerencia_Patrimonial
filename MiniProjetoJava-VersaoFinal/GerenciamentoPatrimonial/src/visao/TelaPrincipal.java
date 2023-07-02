@@ -1,16 +1,17 @@
 package visao;
 
+import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
+import java.awt.event.*;
+import controle.*;
+
 /**
  * Classe que e responsavel pela tela principal,busca e listagem de patrimonios
  * @author Joao Artur Leles Ferreira Pinheiro e Weverton Rodrigues da Costa Silva
  * @since  2023
  * @version 1.0
  */
-import javax.swing.*;
-import javax.swing.border.Border;
-import java.awt.*;
-import java.awt.event.*;
-import controle.*;
 
 public class TelaPrincipal implements ActionListener {
 	private static JFrame janelaInicial = new JFrame("Gerência Patrimonial");

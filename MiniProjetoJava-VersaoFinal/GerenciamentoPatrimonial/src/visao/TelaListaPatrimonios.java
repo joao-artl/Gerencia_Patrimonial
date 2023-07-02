@@ -1,15 +1,16 @@
 package visao;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import controle.*;
+
 /**
  * Classe que e responsavel por listar os patrimonios
  * @author Joao Artur Leles Ferreira Pinheiro e Weverton Rodrigues da Costa Silva
  * @since  2023
  * @version 1.0
  */
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import controle.*;
 
 public class TelaListaPatrimonios implements ActionListener {
 	private JFrame janelaLista = new JFrame("Patrimônios da Empresa");

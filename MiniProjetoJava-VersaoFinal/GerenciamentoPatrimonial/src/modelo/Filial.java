@@ -89,10 +89,10 @@ public class Filial {
 	}
 
 	/**
-	 * Metodo que retorna um array de String
-	 * com os nomes de todos os patrimonios da filial
+	 * Metodo que retorna um vetor de String
+	 * com os nomes de todos os patrimonios da filial.
 	 * Percorre cada patrimonio cadastrado e obtem
-	 * seu respectivo nome
+	 * seu respectivo nome para ser adicionado ao vetor
 	 * @return String[]
 	 */
 	

@@ -89,7 +89,7 @@ public class Empresa {
 	}
 
 	/**
-	 * Metodo que retorna um array de String
+	 * Metodo que retorna um vetor de String
 	 * com os nomes das filiais cadastradas
 	 * @return String[]
 	 */
@@ -106,8 +106,8 @@ public class Empresa {
 	}
 	
 	/**
-	 * Metodo que retorna um array de String com
-	 * os nomes de todos os patrimonios da empresa
+	 * Metodo que retorna um vetor de String com
+	 * os nomes de todos os patrimonios da empresa.
 	 * Percorre cada filial cadastrada e obtem os nomes
 	 * de seus patrimonios, adicionando-os a um ArrayList
 	 * e convertendo no final para o tipo especificado
@@ -125,7 +125,7 @@ public class Empresa {
 	}
 	
 	/**
-	 * Método que preenche o ArrayList de filiais com dados pre-cadastrados 
+	 * Método que preenche o ArrayList de filiais com dados pre-cadastrados. 
 	 * Atribui, a cada interacao do for, informacoes a uma filial
 	 */
 

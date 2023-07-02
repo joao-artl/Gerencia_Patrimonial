@@ -1,14 +1,14 @@
 package controle;
 
+import java.util.ArrayList;
+import modelo.*;
+
 /**
  * Classe que controla os metodos da classe Empresa e simula um banco de dados
  * @author Joao Artur Leles Ferreira Pinheiro e Weverton Rodrigues da Costa Silva
- * @since  2023
+ * @since 2023
  * @version 1.0
  */
-
-import java.util.ArrayList;
-import modelo.*;
 
 public class ControleEmpresa {
 	private Empresa dados;
@@ -25,9 +25,10 @@ public class ControleEmpresa {
 	}
 
 	/**
-	 * Metodo que serve para preencher as filiais com dados pre-cadastrados, usando
-	 * um laço de repetição para preencher o ArrayList com dados
+	 * Metodo que serve para preencher cada filial com patrimonios pre-cadastrados, 
+	 * usando um laço de repeticao para preencher o ArrayList 
 	 */
+	
 	public void fillWithSomeDataDeFiliais() {
 		int i = 0;
 		for (Filial filial : dados.getFiliais()) {
@@ -69,14 +70,15 @@ public class ControleEmpresa {
 	}
 
 	/**
-	 * O metodo verica se todos os campos de cadastro foram preenchidos, depois
-	 * disso um laço de repeticao verifica se a posicao recebida possui uma filial
-	 * ja cadastrada, caso nao possua ele salva uma nova
+	 * Este metodo verifica se todos os campos de cadastro foram preenchidos e, em seguida,
+	 * verifica se a posicao recebida possui uma filial ja cadastrada. Se nao houver uma
+	 * filial cadastrada na posicao especificada, uma nova filial e salva.
 	 * 
-	 * @param f,   string que recebe o nome da filial a ser cadastrada
-	 * @param pos, int que indica o indice do ArrayList
+	 * @param f  vetor de String que recebe os dados da filial a ser cadastrada
+	 * @param pos  um inteiro que indica a posicao em que essa filial deve ser cadastrada/editada no ArrayList
 	 * @return boolean
 	 */
+	
 	public boolean cadastrarEditarFilial(String f[], int pos) {
 		if (f[0].matches("^$|^\\s*$") || !f[1].matches("[0-9]+") || f[2].matches("^$|^\\\\s*$")
 				|| !f[3].matches("[0-9]+") || f[4].matches("^$|^\\\\s*$"))
@@ -100,8 +102,9 @@ public class ControleEmpresa {
 	 * Metodo que recebe o indice de uma filial e o usa para apaga-la do ArrayList
 	 * de filiais
 	 * 
-	 * @param x, o int x corresponde ao numero do indice da filial escolhida
+	 * @param x  o int x corresponde ao indice da filial a ser excluida
 	 */
+	
 	public void apagarFilial(int x) {
 		dados.getFiliais().remove(x);
 	}
@@ -126,9 +129,12 @@ public class ControleEmpresa {
 	 * Metodo que recebe uma String e procura o patrimonio corresponde a ela e
 	 * retorna a posicao da filial, do patrimonio e o tipo do patrimonio
 	 * 
-	 * @param nome, a string nome corresponde ao nome da filial a ser procurada
-	 * @return int
+	 * @param nome  String que corresponde ao nome do patrimonio buscado
+	 * @return int[] - onde a posicao 0 corresponde a filial, a posição 1 corresponde
+	 * ao patrimonio e a posicao 2 corresponde ao tipo de patrimonio
+	 * (1 para Imobiliario, 2 para Utilitario e 3 para Veiculo)
 	 */
+	
 	public int[] procurarPatrimonio(String nome) {
 		for (int i = 0; i < dados.getFiliais().size(); i++) {
 			Filial filial = dados.getFiliais().get(i);
